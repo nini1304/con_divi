@@ -1,4 +1,7 @@
-package arquitectura.software.con_divi.dto
+package arquitectura.software.demo.dto
 
-class DivisasRespDto {
-}
+data class DivisasRespDto<T>(
+    var success: Boolean,
+    var data: Any?,
+    var message: String
+)

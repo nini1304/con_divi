@@ -1,4 +1,9 @@
-package arquitectura.software.con_divi.dto
+package arquitectura.software.demo.dto
 
-class InfoDto {
-}
+import java.math.BigDecimal
+import java.math.BigInteger
+
+data class InfoDto(
+    var timestamp: BigInteger,
+    var rate: BigDecimal
+)

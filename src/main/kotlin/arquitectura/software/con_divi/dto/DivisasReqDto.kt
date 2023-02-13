@@ -1,4 +1,9 @@
-package arquitectura.software.con_divi.dto
+package arquitectura.software.demo.dto
 
-class DivisasReqDto {
-}
+import java.math.BigDecimal
+
+data class DivisasReqDto(
+    var from: String,
+    var to: String,
+    var amount: BigDecimal
+)
