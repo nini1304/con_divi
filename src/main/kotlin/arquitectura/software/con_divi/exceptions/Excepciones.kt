@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 
 @ControllerAdvice
-class ControllerExceptions {
+class Excepciones {
 
     @ExceptionHandler(IllegalArgumentException::class)
     fun zeroException(e: IllegalArgumentException): ResponseEntity<DivisasRespDto<Any>> {
