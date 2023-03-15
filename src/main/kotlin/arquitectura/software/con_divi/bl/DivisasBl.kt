@@ -1,25 +1,39 @@
 package arquitectura.software.con_divi.bl
 import arquitectura.software.con_divi.dao.DivisasDao
-
-import arquitectura.software.con_divi.dao.Repository.DivisasRepository
+import arquitectura.software.con_divi.dao.Repository.DivisaRepository
 import arquitectura.software.demo.dto.DivisasDto
-import arquitectura.software.demo.dto.DivisasRespDto
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
-import java.io.IOException
 import java.math.BigDecimal
 import java.util.*
 
 @Service
-class DivisasBl(private val divisasRepository: DivisasRepository) {
+class DivisasBl  @Autowired constructor(private val divisaRepository: DivisaRepository) {
+
     companion object {
-        private val objectMapper = ObjectMapper()
-        private val LOGGER = LoggerFactory.getLogger(DivisasBl::class.java)
+        val objectMapper = jacksonObjectMapper()
+        val LOGGER: Logger = LoggerFactory.getLogger(DivisasBl::class.java.name)
+    }
+
+    @Value("\${currency.url}")
+    private val url: String? = null
+
+    @Value("\${currency.api_key}")
+    private val apiKey: String? = null
+
+
+    fun getListConvertions(page: Int, size: Int): Any {
+
+        val currencies = divisaRepository.findAll(PageRequest.of(page, size))
+        return currencies
     }
 
     fun convert(from: String, to: String, amount: BigDecimal): DivisasDto {
@@ -29,8 +43,8 @@ class DivisasBl(private val divisasRepository: DivisasRepository) {
 
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder()
-            .url("https://api.apilayer.com/exchangerates_data/convert?from=$from&to=$to&amount=$amount")
-            .addHeader("apikey", "bOv9VzwtvbtNuPhxLT3oZ5Xat8qE8ufB")
+            .url("$url?from=$from&to=$to&amount=$amount")
+            .addHeader("apikey", apiKey)
             .method("GET", null)
             .build()
         val response = client.newCall(request).execute()
@@ -45,7 +59,7 @@ class DivisasBl(private val divisasRepository: DivisasRepository) {
             currency.amount = amount
             currency.result = currencyDto.result!!
             currency.date = Date()
-            divisasRepository.save(currency)
+            divisaRepository.save(currency)
             LOGGER.info("Conversion result: ${result}")
         }
 
@@ -53,4 +67,5 @@ class DivisasBl(private val divisasRepository: DivisasRepository) {
         val divisasDto = mapper.readValue(result, DivisasDto::class.java)
         return divisasDto
     }
+
 }

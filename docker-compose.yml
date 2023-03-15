@@ -10,8 +10,10 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - C:\Users\geral\OneDrive\Escritorio\NOVENO SEMESTRE\ARQUITECTURA DE SOFTWARE\LOGS:/var/lib/postgresql/data
+    networks:
+      - custom-network
   currency-converter:
-    image: currencydemo:2.0.0
+    image: divisasdemo:4.0.0
     restart: always
     mem_limit: 512m
     ports:
@@ -23,4 +25,22 @@ services:
     volumes:
       - C:\Users\geral\OneDrive\Escritorio\NOVENO SEMESTRE\ARQUITECTURA DE SOFTWARE\LO:/Users/geral/OneDrive/Escritorio/NOVENO SEMESTRE/ARQUITECTURA DE SOFTWARE/X
     depends_on:
-        - postgres
+      - postgres
+    networks:
+      - custom-network
+  frontend:
+    image: angular-software:3.0.0
+    ports:
+      - "4200:80"
+    networks:
+      - custom-network
+
+networks:
+  custom-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.10.0.0/16
+          gateway: 172.10.0.1
+

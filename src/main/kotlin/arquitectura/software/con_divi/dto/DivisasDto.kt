@@ -10,6 +10,7 @@ data class DivisasDto(
     var result: BigDecimal?
 ){
     constructor() : this(false,null,null,null,null)
+    constructor(query: DivisasReqDto?, result: BigDecimal?): this()
 
     override fun toString(): String {
         return "DivisasDto(success=$success, query=$query, info=$info, date='$date', result=$result)"

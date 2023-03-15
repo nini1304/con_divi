@@ -16,6 +16,10 @@ class DivisasDao (
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0,
 ) {
-    constructor() : this("", "", BigDecimal.ZERO, BigDecimal.ZERO, Date()) {
+    constructor() : this("", "", BigDecimal.ZERO, BigDecimal.ZERO, Date())
+
+    override fun toString(): String {
+        return "DivisasDao(currencyFrom='$currencyFrom', currencyTo='$currencyTo', amount=$amount, result=$result, date=$date, id=$id)"
     }
+
 }
