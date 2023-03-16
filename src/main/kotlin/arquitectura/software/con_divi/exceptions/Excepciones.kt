@@ -1,6 +1,5 @@
 package arquitectura.software.demo.exceptions
 
-import arquitectura.software.demo.dto.DivisasDto
 import arquitectura.software.demo.dto.DivisasRespDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice

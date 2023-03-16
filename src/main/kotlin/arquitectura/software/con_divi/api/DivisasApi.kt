@@ -17,7 +17,7 @@ class DivisasApi(private val divisasBl: DivisasBl) {
 
     @GetMapping("/convertion")
     fun convert(@RequestParam from: String, @RequestParam to: String, @RequestParam amount: BigDecimal): ResponseEntity<Any> {
-        val currencyDto = divisasBl.convert(from, to, amount)
-        return ResponseEntity.ok(currencyDto)
+        val divisasDto = divisasBl.convert(from, to, amount)
+        return ResponseEntity.ok(divisasDto)
     }
 }
