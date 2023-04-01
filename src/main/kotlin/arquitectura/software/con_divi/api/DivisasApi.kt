@@ -1,10 +1,10 @@
 package arquitectura.software.con_divi.api
 import arquitectura.software.con_divi.bl.DivisasBl
 import org.springframework.http.ResponseEntity
-import org.springframework.security.access.prepost.PreAuthorize
+
 import org.springframework.web.bind.annotation.*
 import java.math.BigDecimal
-import java.security.Principal
+
 
 @RestController
 @RequestMapping("api/v1/diviapi")
@@ -23,21 +23,21 @@ class DivisasApi(private val divisasBl: DivisasBl) {
         return ResponseEntity.ok(divisasDto)
     }
 
-    @GetMapping("/user")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    fun user(): String {
-        return "user"
-    }
+   // @GetMapping("/user")
+    //@PreAuthorize("hasAuthority('ROLE_USER')")
+  //  fun user(): String {
+     //   return "user"
+   // }
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    fun admin(): String {
-        return "admin"
-    }
+   // @GetMapping("/admin")
+   // @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+   // fun admin(): String {
+   //     return "admin"
+   // }
     //siempre al manejar seguridad con cualquier libreria se tiene acceso a la clase principal
-    @GetMapping("/principal")
-    fun info(principal: Principal): String {
-        //retornamos todo el principal para ver lo que se guardo en memoria
-        return principal.toString()
-    }
+   // @GetMapping("/principal")
+   // fun info(principal: Principal): String {
+        //retornamostodo el principal para ver lo que se guardo en memoria
+    //    return principal.toString()
+    //}
 }
