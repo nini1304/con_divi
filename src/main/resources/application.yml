@@ -2,7 +2,7 @@ currency:
   url: ${API_URL:https://api.apilayer.com/exchangerates_data/convert}
   api_key: ${API_KEY:bOv9VzwtvbtNuPhxLT3oZ5Xat8qE8ufB}
 location:
-  url: ${LOCATION_API_URL:https://api.apilayer.com/ip_to_location/}
+  url: ${LOCATION_API_URL:https://api.apilayer.com/ip_to_location}
   api_key: ${LOCATION_API_KEY:hDLkHHWZoNZ70m6BQ2014qh90v8qruVY}
 server:
   port: 8080

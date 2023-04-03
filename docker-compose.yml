@@ -14,7 +14,7 @@ services:
     networks:
       - custom-network
   currency-converter:
-    image: divisasdemo:6.0.0
+    image: divisasdemo:7.0.0
     restart: always
     mem_limit: 512m
     ports:
@@ -30,7 +30,7 @@ services:
     networks:
       - custom-network
   frontend:
-    image: angular-software:6.0.0
+    image: angular-software:8.0.0
     ports:
       - "4200:80"
     volumes:
