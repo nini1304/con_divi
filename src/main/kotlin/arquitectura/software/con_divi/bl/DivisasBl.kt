@@ -20,7 +20,7 @@ class DivisasBl  @Autowired constructor(private val divisaRepository: DivisaRepo
 
     companion object {
         val objectMapper = jacksonObjectMapper()
-        val LOGGER: Logger = LoggerFactory.getLogger(DivisasBl::class.java.name)
+        val LOGGER: Logger = LoggerFactory.getLogger(LocationBl::class.java.name)
     }
 
     @Value("\${currency.url}")
@@ -40,7 +40,6 @@ class DivisasBl  @Autowired constructor(private val divisaRepository: DivisaRepo
         if (amount <= BigDecimal.ZERO) {
             throw IllegalArgumentException("The change amount must be greater than 0 and not equal to 0")
         }
-
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder()
             .url("$url?from=$from&to=$to&amount=$amount")

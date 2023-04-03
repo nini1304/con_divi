@@ -1,5 +1,6 @@
 package arquitectura.software.con_divi.api
 import arquitectura.software.con_divi.bl.DivisasBl
+import arquitectura.software.con_divi.bl.LocationBl
 import org.springframework.http.ResponseEntity
 
 import org.springframework.web.bind.annotation.*
