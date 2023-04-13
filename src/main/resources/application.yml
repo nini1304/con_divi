@@ -43,6 +43,11 @@ keycloak:
             - OPTIONS
           patterns:
             - /api/v1/diviapi/convertion
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 
 
